@@ -6,7 +6,7 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-<video id="myVideoTag" autoplay></video>
+<video id="myVideoTag" muted autoplay></video>
 <video id="theirVideoTag" autoplay></video>
 <div>
     <label>Your Name</label><input id="myName" type="text"/>
@@ -98,7 +98,9 @@
             displaySignalMessage("going to display my stream...");
             window.mystream = stream;
             myVideoArea.srcObject = stream;
-            rtcPeerConn.addTrack(stream.getTracks()[1],stream);
+            stream.getTracks().forEach(track => {
+                rtcPeerConn.addTrack(track, stream)
+            })
         }, logError);
 
     }
