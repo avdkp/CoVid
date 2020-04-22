@@ -33,8 +33,10 @@
 
     io = io.connect();
     joinRoom.addEventListener('click', function () {
-        if(roomID.value) {
+        if(roomID.value && roomID.value !== myRoom) {
             rtcPeerConn = null;
+            myVideoArea.srcObject = null;
+            theirVideoArea.srcObject = null;
             myRoom = roomID.value;
             io.emit('ready', roomID.value);
             io.emit('signal', {"type": "user_here", "message": "Are you ready for a call?", "room": roomID.value});
