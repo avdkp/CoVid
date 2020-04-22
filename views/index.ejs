@@ -98,9 +98,7 @@
             displaySignalMessage("going to display my stream...");
             window.mystream = stream;
             myVideoArea.srcObject = stream;
-            stream.getTracks().forEach(track => {
-                rtcPeerConn.addTrack(track, stream)
-            })
+            rtcPeerConn.addTrack(stream.getTracks()[1],stream);
         }, logError);
 
     }
